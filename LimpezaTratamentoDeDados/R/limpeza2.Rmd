@@ -1,0 +1,93 @@
+---
+Limpeza script "tempo.csv"
+Aparência: sol, nublado, chuva
+Temperatura: -130 ~ 130F
+Umidade: 0 ~ 100
+Jogar: sim/nao
+Tratar valores NAs
+---
+```{r}
+dados = read.csv("/home/audrey/Área de Trabalho/data-science/LimpezaTratamentoDeDados/dados/tempo.csv", sep = ";", na.strings = "", stringsAsFactors = T)
+head(dados)
+summary(dados)
+```
+Explorando dados categóricos
+```{r}
+#Aparencia
+counts = table(dados$Aparencia)
+barplot(counts, main = "Aparencia", xlab = "Aparencia")
+#Vento
+counts = table(dados$Vento)
+barplot(counts, main = "Vento", xlab = "Vento")
+#Jogar
+counts = table(dados$Jogar)
+barplot(counts, main = "Jogar", xlab = "Jogar")
+```
+Explorando dados numéricos
+```{r}
+#Temperatura
+summary(dados$Temperatura)
+boxplot(dados$Temperatura)
+hist(dados$Temperatura)
+#Umidade
+summary(dados$Umidade)
+boxplot(dados$Umidade)
+hist(dados$Umidade)
+```
+Valores faltantes - NAs
+```{r}
+dados[!complete.cases(dados),]
+```
+Umidade
+```{r}
+#tratar umidade
+summary(dados$Umidade)
+#ver a mediana
+median(dados$Umidade, na.rm = T)
+#atribuir mediana a NA
+dados[is.na(dados$Umidade),]$Umidade = median(dados$Umidade, na.rm = T)
+#buscar NA em umidade para checar
+dados[!complete.cases(dados$Umidade),]
+```
+Umidade fora do domínio
+```{r}
+summary(dados$Umidade)
+#dados fora do domínio
+dados[dados$Umidade < 0 | dados$Umidade > 100,]$Umidade
+#substituir com mediana
+dados[dados$Umidade < 0 | dados$Umidade > 100,]$Umidade = median(dados$Umidade)
+#buscando novamente idades anormais
+dados[dados$Umidade < 0 | dados$Umidade > 100,]
+summary(dados$Umidade)
+```
+
+Vento
+```{r}
+unique(dados$Vento)
+summary(dados$Vento)
+#transformar NA em FALSO (moda)
+dados[is.na(dados$Vento),]$Vento = "FALSO"
+summary(dados$Vento)
+```
+Aparencia
+```{r}
+unique(dados$Aparencia)
+summary(dados$Aparencia)
+dados[!dados$Aparencia %in% c("chuva", "nublado", "sol"),]$Aparencia = "sol"
+summary(dados$Aparencia)
+#removendo fatores não usados
+dados$Aparencia = factor(dados$Aparencia)
+summary(dados$Aparencia)
+```
+Tempertatura fora do domínio
+```{r}
+summary(dados$Temperatura)
+dados[dados$Temperatura < -130 | dados$Temperatura > 130,]$Temperatura
+dados[dados$Temperatura < -130 | dados$Temperatura > 130,]$Temperatura = median(dados$Temperatura)
+dados[dados$Temperatura < -130 | dados$Temperatura > 130,]
+summary(dados$Temperatura)
+```
+```{r}
+summary(dados)
+```
+
