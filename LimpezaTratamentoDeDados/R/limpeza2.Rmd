@@ -79,7 +79,7 @@ summary(dados$Aparencia)
 dados$Aparencia = factor(dados$Aparencia)
 summary(dados$Aparencia)
 ```
-Tempertatura fora do domínio
+Temperatura fora do domínio
 ```{r}
 summary(dados$Temperatura)
 dados[dados$Temperatura < -130 | dados$Temperatura > 130,]$Temperatura
