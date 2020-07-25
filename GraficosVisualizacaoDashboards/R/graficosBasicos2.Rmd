@@ -1,0 +1,43 @@
+---
+title: "Gráficos básicos - continuação"
+output: html_notebook
+---
+Boxplot
+```{r}
+trees
+boxplot(trees$Volume, main = "Árvores", xlab = "Volume")
+boxplot(trees$Volume, main = "Árvores", xlab = "Volume", col = "blue", horizontal = TRUE)
+boxplot(trees$Volume, main = "Árvores", xlab = "Volume", col = "blue", outline = F)
+```
+```{r}
+#notch
+boxplot(trees$Height, main = "Árvores", xlab = "Altura", col = "blue", notch = TRUE)
+#dados do gráfico
+boxplot.stats(trees$Height)
+#lê apenas uma informação
+boxplot.stats(trees$Height)$stats
+```
+Vários boxplot
+```{r}
+boxplot(trees)
+```
+Agregação
+```{r}
+InsectSprays
+spray = aggregate(. ~ spray, data = InsectSprays, sum)
+spray
+```
+Gráfico de barras
+```{r}
+barplot(spray$count, col = gray.colors(6), xlab = "Spray", ylab = "Total", names.arg = spray$spray)
+box()
+```
+Gráfico de setor (pizza)
+```{r}
+pie(spray$count, labels = spray$spray, main = "Spray", col = c(1:6))
+```
+Setor com legenda
+```{r}
+pie(spray$count, labels = NA, main = "Spray", col = c(1:6))
+legend("bottomright", legend = spray$spray, cex = 1, fill = c(1:6))
+```
