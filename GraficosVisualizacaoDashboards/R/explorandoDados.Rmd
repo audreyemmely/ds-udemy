@@ -1,0 +1,51 @@
+---
+title: "Análise de dados exploratória"
+output: html_notebook
+---
+```{r}
+#paleta de cores
+#install.packages("RColorBrewer")
+library("RColorBrewer")
+```
+
+```{r}
+dataset = read.csv("/home/audrey/Área de Trabalho/data-science/GraficosVisualizacaoDashboards/dados/dados.csv", sep = ";")
+head(dataset)
+```
+```{r}
+summary(dataset$VALOREMPENHO)
+summary(dataset$PIB)
+```
+Boxplot
+```{r}
+boxplot(dataset$VALOREMPENHO, main = "Valores de empenho", col = brewer.pal(n = 3, name = "Paired"), outline = F)
+boxplot(dataset$PIB, main = "Valores de PIB", col = brewer.pal(n = 3, name = "Pastel1"), outline = F)
+```
+Histograma
+```{r}
+hist(dataset$VALOREMPENHO, main = "Valores de empenho", col = brewer.pal(n = 3, name = "Paired"))
+hist(dataset$PIB, main = "Valores de PIB", col = brewer.pal(n = 3, name = "Pastel1"))
+```
+Maiores empenhos
+```{r}
+Mempenho = head(dataset[order(-dataset$VALOREMPENHO),],10)
+barplot(Mempenho$VALOREMPENHO, col = brewer.pal(n = 10, name = "RdBu"), las = 2, main = "Maiores empenhos")
+legend("topright", legend = Mempenho$MUNICIPIO, col = brewer.pal(n = 10, name = "RdBu"), lty = 1:2, cex = 0.8, ncol = 2, lwd = 4)
+box()
+```
+Maiores PIBs
+```{r}
+Mpibs = head(dataset[order(-dataset$PIB),],10)
+barplot(Mpibs$PIB, col = brewer.pal(n = 10, name = "Spectral"), las = 2, main = "Maiores PIBs")
+legend("topright", legend = Mpibs$MUNICIPIO, col = brewer.pal(n = 10, name = "Spectral"), lty = 1:2, cex = 0.8, ncol = 2, lwd = 4)
+box()
+```
+Relação entre PIB e empenho
+```{r}
+#calcula qual % de PIB foi empenhado
+dataset$PROPORCAO = dataset$VALOREMPENHO/dataset$PIB
+Mprop = head(dataset[order(-dataset$PROPORCAO),],10)
+barplot(Mprop$PROPORCAO, col = brewer.pal(n = 10, name = "Set3"), las = 2, main = "Maiores gastos em proporção ao PIB")
+legend("topright", legend = Mprop$MUNICIPIO, col = brewer.pal(n = 10, name = "Set3"), lty = 1:2, cex = 0.8, ncol = 2, lwd =4)
+box()
+```
