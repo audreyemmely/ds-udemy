@@ -1,7 +1,7 @@
 # Curso Formação cientista de dados com Python e R
 Exemplos práticos de codificação em R e Python usando dados reais, contendo:
 
-- Estatística I, II e III
+- Estatística I e II 
 - Séries Temporais
 - Machine Learning
 - Artificial Neural Networks e Deep Learning
