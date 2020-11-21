@@ -1,0 +1,27 @@
+---
+title: "Qui-Quadrado"
+output: html_notebook
+---
+Criando o conjunto de dados para teste
+```{r}
+novela = matrix(c(19, 6, 43, 32), nrow = 2, byrow = T)
+rownames(novela) = c("Masculino", "Feminino")
+colnames(novela) = c("Assiste", "NaoAssiste")
+novela
+```
+Executando Qui-Quadrado
+Valor de p é maior que 0.05, não há evidências de diferença significativa (hipótese nula)
+```{r}
+chisq.test(novela)
+```
+Alterando a proporção de homens que assiste e não assiste
+```{r}
+novela = matrix(c(22, 3, 43, 32), nrow = 2, byrow = T)
+rownames(novela) = c("Masculino", "Feminino")
+colnames(novela) = c("Assiste", "NaoAssiste")
+novela
+```
+Executando o teste novamente, agora valor p menor que 0.05
+```{r}
+chisq.test(novela)
+```
