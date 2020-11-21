@@ -1,0 +1,22 @@
+---
+title: "Distribuição Binomial"
+output: html_notebook
+---
+x = eventos, p = probabilidades, size = número de eventos
+Se jogar uma moeda cinco vezes, qual a probabilidade de dar cara três vezes?
+```{r}
+dbinom(x=3, size = 5, prob = 0.5)
+```
+Se eu passar quatro sinais de quatro tempos cada, qual a probabilidade de eu pegar 0, 1, 2, 3 e 4 sinais verdes?
+```{r}
+pbinom(q = 4, size = 4, prob = 0.25)
+```
+Se você fizer a prova de um concurso com 12 questões, chutando todas as questões, qual a probabilidade de acertar 7 questões? (4 alternativas cada questão)
+```{r}
+dbinom(x=7, size = 12, prob = 0.25)
+```
+Se eu passar quatro sinais de quatro tempos cada, qual a probabilidade de eu pegar três ou mais sinais verdes?
+```{r}
+pbinom(q = 2, size = 4, prob = 0.25, lower.tail = F)
+dbinom(x = 3, size = 4, prob = 0.25) + dbinom(x = 4, size = 4, prob = 0.25)
+```
