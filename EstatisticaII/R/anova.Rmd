@@ -1,0 +1,35 @@
+---
+title: "Anova"
+output: html_notebook
+---
+Carregando os dados
+```{r}
+tratamento = read.csv("https://raw.githubusercontent.com/audreyemmely/ds-udemy/master/EstatisticaII/dados/anova.csv", sep = ";")
+tratamento
+```
+Visualizando a distribuição dos remédios por horas
+```{r}
+boxplot(tratamento$Horas ~ tratamento$Remedio)
+```
+Executando análise de variância
+Observar valor de p maior que 0.05 (Pf(>F))
+Hipótese nula de que não há diferença significativa
+```{r}
+an = aov(Horas ~ Remedio, data = tratamento)
+summary(an)
+```
+Anova de dois fatores
+Nenhum valor de P mostra diferença significativa
+```{r}
+an = aov(Horas ~ Remedio * Sexo, data = tratamento)
+summary(an)
+```
+Se houver diferença o teste de Tuckey é executado
+```{r}
+tukey = TukeyHSD(an)
+tukey
+```
+Gráfico do teste
+```{r}
+plot(tukey)
+```
