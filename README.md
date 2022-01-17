@@ -1,15 +1,33 @@
 # Curso Formação cientista de dados com Python e R
 Exemplos práticos de codificação em R e Python usando dados reais, contendo:
 
-- Estatística I e II 
-- Séries Temporais
-- Machine Learning
+- Introdução as Linguagens de Programação R e Python
+
+- Limpeza e Tratamento de Dados
+
+- Gráficos, Visualização de Dados e Dashboards
+
+- Estatística I: Amostragem, Medidas de Centralidade e Variabilidade, Probabilidades, Distribuição Normal
+
+- Estatística II: Intervalos de Confiança, Testes de Hipótese, Distribuição t de Student, Distribuição Binomial, Distribuição de Poisson, Qui Quadrado, Anova
+
+- Regressão Linear e Correlação
+
+- Séries Temporais com Arima
+
+- Machine Learning: Aplicações, conceitos, Classificação, Dimensionamento de Características, Codificação de Categorias, Agrupamentos, Regras de Associação.
+
 - Artificial Neural Networks e Deep Learning
+
 - Grafos e Redes Sociais
+
 - Mineração de Texto
-- Visualização, Gráficos e Dashboards
+
 - SQL e NoSQL
-- Fundamentos de Gestão de Projetos
+
+- Spark com Databricks
+
+- Computação na Nuvem com AWS
 
 Seções bônus:
 
